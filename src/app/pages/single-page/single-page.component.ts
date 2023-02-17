@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { data } from 'src/assets/data';
+import { FeroService } from 'src/app/fero.service';
 
 @Component({
   selector: 'app-single-page',
@@ -8,11 +8,13 @@ import { data } from 'src/assets/data';
 })
 export class SinglePageComponent 
 {
+  constructor(private fero:FeroService){}
+  data=this.fero.giveData();
 single :any
 ngOnInit()
 {
 let id=Number(localStorage.getItem('id'))
-this.single=data.filter(e => e.id== id)
+this.single=this.data.filter(e => e.id== id)
 console.log("name",this.single)
 }
 }
